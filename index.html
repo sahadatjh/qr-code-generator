@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code generator(qrcodejs)</title>
+    <script type="text/javascript" src="qrcode.js"></script>
+</head>
+<body>
+    <h1>QR Code Generator(SAHADAT)</h1>
+    <input type="text" id="inputBox" placeholder="Enter your text">
+    <button id="btnClick">Click</button>
+    <p id="qrImage"></p>
+
+    <script type="text/javascript">
+        const qrImageBox = document.getElementById('qrImage')    
+        const BTN = document.getElementById('btnClick')
+        let textBox = document.getElementById("inputBox")
+
+        var qrCodeObj = new QRCode(qrImageBox, {
+            width  : 100,
+            height : 100
+        });
+
+        BTN.addEventListener('click',function(){
+            generateCode()
+        })
+        
+        textBox.addEventListener('keydown',function(e){
+            if (e.key == 'Enter' ) {
+                    generateCode();
+                }
+        });
+
+        function generateCode(){
+            
+            if (!textBox.value) {
+                alert('Please enter a value!!!')
+                textBox.focus()
+                return;
+            }
+            qrCodeObj.makeCode(textBox.value)
+        }
+    </script>
+</body>
+</html>
